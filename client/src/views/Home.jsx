@@ -16,16 +16,19 @@ import SERVER_URL from '../config.js'
 export default function Home() {
     const navigate = useNavigate();
 
+    const numberOfNextMatchesVisible = 4;
+
     const { authenticatedUser } = useContext(AuthContext);
     const [clubTeamId, setClubTeamId] = useState();
-    const [nextMatch, setNextMatch] = useState();
+    const [nextMatch, setNextMatch] = useState(null);
+    const [nextMatches, setNextMatches] = useState([]);
     const [width, setWidth] = useState(window.innerWidth);
 
     const [lastPlayedMatch, setLastPlayedMatch] = useState(null);
     const [lastPlayedMatchPlayerMatchStats, setLastPlayedMatchPlayerMatchStats] = useState();
     const [lastPlayedMatchGoalieMatchStats, setLastPlayedMatchGoalieMatchStats] = useState();
 
-    const [nextMatchAvailable, setNextMatchAvailable] = useState(false);
+    const [nextMatchesAvailable, setNextMatchesAvailable] = useState(false);
     const [statsAvailable, setStatsAvailable] = useState(false);
     const [recomendationsAvailable, setRecomendationsAvailable] = useState(false);
 
@@ -34,10 +37,10 @@ export default function Home() {
     const getNextMatch = async () => {
         try {
             const response = await axios.get(`${SERVER_URL}/matches/next/clubTeam/${clubTeamId}`, { withCredentials: true });
-            setNextMatch(response.data[0]);
-            setNextMatchAvailable(true);
+            setNextMatches(response.data);
+            setNextMatchesAvailable(true);
         } catch (error) {
-            setNextMatchAvailable(false);
+            setNextMatchesAvailable(false);
             console.log('Error fetching next match: ', error);
         }
     }
@@ -144,18 +147,25 @@ export default function Home() {
                             <div id='nextMatchDiv'>
                                 <div id='nextMatchAndTextDiv'>
                                     <div id='nextMatchTextDiv'>
-                                        <p id='nextMatchText'>Próximo partido</p>
+                                        <p id='nextMatchText'>Próximos partidos</p>
                                     </div>
                                     <div id='nextMatchAndButtonDiv'>
                                         {
-                                            (nextMatchAvailable) ? (nextMatch && (
-                                                (width < 700)
-                                                    ? (<MatchCompressed match={nextMatch} />)
-                                                    : (<Match match={nextMatch} />)
-                                            )) :
-                                                (<div id='notNextMatchDiv'>
+                                            nextMatchesAvailable && nextMatches ? (
+                                                nextMatches.slice(0, numberOfNextMatchesVisible).map((match) => (
+                                                    ((width < 700)
+                                                        ? (
+                                                            <MatchCompressed match={match} />
+                                                        )
+                                                        : (
+                                                            <Match match={match} />)
+                                                    )
+                                                ))
+                                            ) : (
+                                                <div id='notNextMatchDiv'>
                                                     <p id='notNextMatchText'>No hay próximo partido</p>
-                                                </div>)
+                                                </div>
+                                            )
                                         }
                                         {(authenticatedUser.isCoach == true) &&
                                             (
