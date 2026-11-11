@@ -1,65 +1,140 @@
-#clubTeamSelectorMainDiv {
-    top: 90px;
-    right: 20px;
-    z-index: 10;
-    display: flex;
-    flex-direction: row;
+/* Contenedor del selector de categoría: Fijo arriba a la derecha, debajo del Header */
+.clubTeamSelectorHeaderBar {
     position: fixed;
+    top: 88px;
+    right: 28px;
+    z-index: 95;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.clubTeamSelectorDiv {
-    border: 1px solid var(--club-primary-color);
-    background-color: white;
+.clubTeamSelectorContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding: 5px 8px;
+    border-radius: 9999px;
+    transition: all 0.25s ease;
 }
 
-.clubTeamSelectorText {
-    color: var(--club-primary-color);
-    font-family: Inria Sans;
-    font-weight: bold;
-    margin: 0;
-    padding: 0px 10px;
+.clubTeamSelectorContainer:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+}
+
+.clubTeamSelectorBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-left: 8px;
+    padding-right: 2px;
     user-select: none;
 }
 
-.clubTeamSelectorTextSelected {
-    color: white;
-    font-family: Inria Sans;
-    font-weight: bold;
-    margin: 0;
-    padding: 0px 10px;
-    user-select: none;
-}
-
-.clubTeamSelectorDivFirst {
-    border: 1px solid var(--club-primary-color);
-    background-color: white;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.clubTeamSelectorDivLast {
-    border: 1px solid var(--club-primary-color);
-    background-color: white;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.clubTeamSelectorDivFirstSelected {
-    border: 1px solid var(--club-primary-color);
+.clubTeamSelectorDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
     background-color: var(--club-primary-color);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
 }
 
-.clubTeamSelectorDivLastSelected {
-    border: 1px solid var(--club-primary-color);
-    background-color: var(--club-primary-color);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+.clubTeamSelectorLabel {
+    font-family: Inria Sans, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
 }
 
-.clubTeamSelectorDiv:hover,
-.clubTeamSelectorDivFirst:hover,
-.clubTeamSelectorDivLast:hover {
+.clubTeamSelectorPillGroup {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 2px;
+    border-radius: 9999px;
+    gap: 2px;
+}
+
+.clubTeamSelectorPill {
+    border: none;
+    background: transparent;
+    padding: 6px 14px;
+    border-radius: 9999px;
     cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    font-family: Inria Sans, sans-serif;
+}
+
+.clubTeamSelectorPillText {
+    font-family: Inria Sans, sans-serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #475569;
+    transition: color 0.2s ease;
+}
+
+.clubTeamSelectorPill:hover:not(.selected) {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.clubTeamSelectorPill:hover:not(.selected) .clubTeamSelectorPillText {
+    color: #0f172a;
+}
+
+.clubTeamSelectorPill.selected {
+    background: var(--club-primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+}
+
+.clubTeamSelectorPill.selected .clubTeamSelectorPillText {
+    color: #ffffff;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .clubTeamSelectorHeaderBar {
+        top: 84px;
+        right: 12px;
+        left: 12px;
+        width: auto;
+    }
+
+    .clubTeamSelectorContainer {
+        width: 100%;
+        justify-content: space-between;
+        border-radius: 12px;
+        padding: 4px;
+    }
+
+    .clubTeamSelectorBadge {
+        display: none;
+    }
+
+    .clubTeamSelectorPillGroup {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .clubTeamSelectorPill {
+        flex: 1 1 auto;
+        padding: 6px 8px;
+        border-radius: 8px;
+    }
+
+    .clubTeamSelectorPillText {
+        font-size: 0.75rem;
+    }
 }

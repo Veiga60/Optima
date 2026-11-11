@@ -1,157 +1,309 @@
+/* Contenedor principal de Home con margen superior para no solaparse con el selector */
 #homePageContentDiv {
     position: absolute;
     left: 0;
     top: 80px;
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: calc(100% - 80px);
+    min-height: calc(100vh - 80px);
     overflow-y: auto;
-    scrollbar-color: hsl(218, 93%, 41%) transparent;
+    scrollbar-color: var(--club-primary-color) transparent;
+    padding: 32px 40px 48px 40px;
+    box-sizing: border-box;
+    gap: 28px;
+    margin: 0;
 }
 
-#greetingDiv {
-    height: 70%;
+/* Barra superior: Banner de bienvenida */
+#homeTopBar {
     width: 100%;
-}
-
-#greetingTextDiv {
-    width: 30%;
-    margin-left: 5%;
-    padding: 0;
-}
-
-#greetingText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: xx-large;
-    white-space: nowrap;
-}
-
-#startMatchButton {
-    background-color: var(--club-primary-color);
-    border: none;
-    border-radius: 12px;
-    width: 100%;
-    height: 40px;
-    font-family: Inria Sans;
-    font-size: larger;
-    transition: 0.5s;
-}
-
-#startMatchButton:hover {
-    background-color: rgb(5, 54, 138);
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-#playerImage {
-    border: 2px solid var(--club-primary-color);
-    border-radius: 20px;
-}
-
-#coachImage {
-    width: 100%;
-    margin-left: 20px;
-    margin-top: -15px;
-}
-
-#playerImageDiv {
-    width: 30%;
-    margin-left: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#nextMatchDiv {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
-    height: fit-content;
-    margin-left: 40px;
-    gap: 10px;
 }
 
-#nextMatchAndButtonDiv {
+/* Tarjeta de bienvenida de diseño horizontal completo */
+#greetingDiv {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.85) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    padding: 24px 36px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: visible;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    gap: 32px;
+    width: 100%;
+    max-width: 780px;
+    min-height: 160px;
+    box-sizing: border-box;
 }
 
-#nextMatchText {
-    color: black;
-    font-family: Inria Sans;
+#greetingDiv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--club-primary-color);
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+
+#greetingDiv:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+}
+
+#greetingTextDiv {
+    flex: 1;
+    margin: 0;
+    padding: 0;
     text-align: left;
-    font-weight: bold;
-    font-size: large;
+}
+
+#greetingText {
+    color: #1a1a1a;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 800;
+    font-size: 2.1rem;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+#greetingSubtext {
+    color: #64748b;
+    font-family: Inria Sans, sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+#playerImageDiv {
+    width: auto;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 6px;
+    overflow: visible;
+}
+
+/* Foto de perfil grande sin cortes: 130px de alto y ancho real */
+#playerImage {
+    width: 160px;
+    height: 160px;
+    min-width: 160px;
+    min-height: 160px;
+    max-width: none;
+    object-fit: fill;
+    border: 4px solid var(--club-primary-color);
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: block;
+}
+
+#playerImage:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+#coachImage {
+    width: 155px;
+    height: auto;
+    max-height: 130px;
+    max-width: none;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
+}
+
+/* Cuerpo dividido: Columna izquierda (Próximo partido) y Columna derecha (Último partido MÁS ANCHO) */
+#homeBodyDiv {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 620px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+#leftDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+#rightDiv,
+#notCoachRightDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Sección de Próximo Partido */
+#nextMatchDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin: 0;
+    gap: 12px;
+}
+
+#nextMatchAndTextDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 #nextMatchTextDiv {
     display: flex;
-    justify-content: left;
+    align-items: center;
+    gap: 8px;
 }
 
-#leftDiv {
-    width: 50%;
+#nextMatchText,
+#recomendationsText,
+#lastMatchText {
+    color: #1a1a1a;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#nextMatchText::before,
+#recomendationsText::before,
+#lastMatchText::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: var(--club-primary-color);
+    border-radius: 2px;
+}
+
+#nextMatchAndButtonDiv {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
 }
 
-#rightDiv {
-    width: 50%;
+#notNextMatchDiv {
+    width: 100%;
+    min-height: 110px;
+    background: white;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
+#notNextMatchText {
+    font-family: Inria Sans, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #777;
+    margin: 0;
+}
+
+/* Botón EMPEZAR PARTIDO (Coach) */
+#startMatchDiv {
+    width: 100%;
+}
+
+#startMatchButton {
+    background-color: var(--club-primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    width: 100%;
+    height: 50px;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#startMatchButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+
+#startMatchButton:active {
+    transform: translateY(0);
+}
+
+/* Sección Recomendaciones (Coach) */
 #recomendationsDiv {
     display: flex;
     flex-direction: column;
-    width: 70%;
-    height: 40%;
-    margin-top: 150px;
-}
-
-#recomendationsText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: large;
-    text-align: left;
+    width: 100%;
+    gap: 12px;
 }
 
 #recomendations {
     width: 100%;
-    height: 100%;
-    background-color: white;
-    border: 2px solid var(--club-primary-color);
-    border-radius: 10px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 26px 24px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 16px;
 }
 
 #recomendations:hover {
-    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.1);
+    border-color: var(--club-primary-color);
 }
 
 #seeRecomendationsText {
-    color: black;
-    font-family: Inria Sans;
-}
-
-#startMatchButton {
-    font-size: 1.1em;
-    white-space: nowrap;
-}
-
-#lastPlayedMatchVersusText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: xx-large;
+    color: #555;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
 }
 
 #lastPlayedMatchDiv {
@@ -159,41 +311,67 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 28px;
+    padding: 6px 0;
 }
 
-#lastPlayedMatchLocalTeamImage {
-    width: 20%;
-}
-
+#lastPlayedMatchLocalTeamImage,
 #lastPlayedMatchVisitingTeamImage {
-    width: 20%;
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+    transition: transform 0.2s ease;
 }
 
-#notCoachRightDiv {
-    width: 50%;
+#recomendations:hover #lastPlayedMatchLocalTeamImage,
+#recomendations:hover #lastPlayedMatchVisitingTeamImage {
+    transform: scale(1.08);
+}
+
+#lastPlayedMatchVersusText {
+    color: var(--club-primary-color);
+    font-family: Inria Sans, sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+#noRecomendationsDiv {
+    width: 100%;
+    min-height: 180px;
+    background-color: white;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+#noRecomendationsAvailable {
+    font-family: Inria Sans, sans-serif;
+    color: #777;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+/* ==============================================================
+   CONTENEDOR DEL ÚLTIMO PARTIDO: MÁS ANCHO, CON ESTADÍSTICAS GRANDES
+   ============================================================== */
+#lastMatchPlayerMatchStatsDiv {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-#lastMatchText {
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-}
-
-#lastMatchPlayerMatchStatsDiv {
-    height: 85%;
-    width: 100%;
-}
-
-#lastMatchLocalTeamImage {
-    width: 20%;
-}
-
-#lastMatchVisitingTeamImage {
-    width: 20%;
+    gap: 20px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 22px;
+    padding: 26px 30px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
 #lastMatchDiv {
@@ -201,525 +379,184 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 0;
-    width: 45%;
+    gap: 28px;
+    width: 100%;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+#lastMatchLocalTeamImage,
+#lastMatchVisitingTeamImage {
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 #lastMatchSeparator {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
+    color: var(--club-primary-color);
+    font-family: Inria Sans, sans-serif;
+    font-weight: 900;
+    font-size: 1.45rem;
+    letter-spacing: 0.06em;
     margin: 0;
-    padding: 0;
 }
 
+/* Grid de estadísticas más ancho con tarjetas y diales más grandes */
 #lastMatchPlayerStats {
-    border: 2px solid var(--club-primary-color);
-    width: 95%;
-    height: 84.5%;
-    max-height: 84.5%;
-    background-color: white;
+    border: none;
+    width: 100%;
+    background-color: transparent;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+    align-items: stretch;
     justify-content: center;
-    overflow-y: auto;
-    scrollbar-color: var(--club-primary-color) transparent;
+    padding: 6px;
 }
 
 .playerStat {
-    height: 100%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 14px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.playerStat:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    border-color: rgba(0, 0, 0, 0.18);
+    background: #ffffff;
 }
 
 .playerStatDiv {
-    border: 4px solid var(--club-primary-color);
-    border-radius: 100000px;
+    border: 3.5px solid var(--club-primary-color);
+    border-radius: 50%;
     background-color: white;
-    width: 70px;
-    height: 70px;
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.playerStat:hover .playerStatDiv {
+    transform: scale(1.08);
+}
+
+.playerStatText {
+    font-family: Inria Sans, sans-serif;
+    color: #1a1a1a;
+    font-weight: 800;
+    font-size: 1.55rem;
+    margin: 0;
+}
+
+.playerStatsTitle {
+    font-family: Inria Sans, sans-serif;
+    color: #475569;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    line-height: 1.25;
+    min-height: 2.3em;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.playerStatText {
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-    font-size: x-large;
-}
-
-.playerStatsTitle {
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-    font-size: small;
-}
-
-#noRecomendationsDiv {
+#noStatsAvailable {
     width: 100%;
-    height: 100%;
-    background-color: white;
-    border: 2px solid var(--club-primary-color);
-    border-radius: 10px;
+    min-height: 160px;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #noStatsText {
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-    font-size: x-large;
+    font-family: Inria Sans, sans-serif;
+    color: #777;
+    font-weight: 600;
+    font-size: 1.05rem;
     margin: 0;
 }
 
-#noRecomendationsAvailable {
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-    font-size: x-large;
-    margin: 0;
+/* ==============================================================
+   RESPONSIVE DESIGN
+   ============================================================== */
 
-}
+@media (max-width: 1100px) {
+    #homeBodyDiv {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
 
-#noStatsAvailable {
-    border: 2px solid var(--club-primary-color);
-    width: 95%;
-    height: 75%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#notNextMatchDiv {
-    width: 600px;
-    height: 100px;
-    background-color: white;
-    border: 2px solid var(--club-primary-color);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#notNextMatchText {
-    font-family: Inria Sans;
-    font-size: x-large;
-    color: black;
-}
-
-@media (max-width: 700px) {
     #greetingDiv {
-        height: auto;
-    }
-
-    #greetingText {
-        font-size: x-large;
-    }
-
-    #nextMatchAndButtonDiv {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    #nextMatchDiv {
-        margin-left: 7px;
-        width: calc(100% - 20px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    #seeRecomendationsText {
-        display: none;
-    }
-
-    #homePageContentDiv {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    #leftDiv {
-        width: 100%;
-    }
-
-    #rightDiv {
-        margin-top: 20px;
-        width: 100%;
-        height: 40%;
-        display: flex;
-        align-items: center;
-    }
-
-    #recomendationsDiv {
-        margin-top: 0;
-        height: 60%;
-    }
-
-    #recomendationsText,
-    #nextMatchText {
-        margin: 0;
-    }
-
-    #recomendations {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #coachImage {
-        width: 150%;
-    }
-
-    #notCoachRightDiv {
-        width: 100%;
-        margin-top: 0;
-        display: flex;
-        height: 33.6%;
-    }
-
-    #lastMatchDiv {
-        display: none;
-    }
-
-    #lastMatchText {
-        margin: 0;
-        margin-top: 10%;
-        padding-left: 10px;
-    }
-
-    .playerStat {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-    }
-
-    .playerStatDiv {
-        width: 40px;
-        height: 40px;
-    }
-
-    .playerStatText {
-        font-family: Inria Sans;
-        color: black;
-        font-weight: bold;
-        font-size: large;
-    }
-
-    .playerStatsTitle {
-        font-family: Inria Sans;
-        color: black;
-        font-weight: bold;
-        font-size: x-small;
-        min-height: 3em;
-        display: flex;
-        align-items: flex-start;
-        text-align: center;
-    }
-
-    #lastMatchPlayerStats {
-        grid-template-columns: repeat(auto-fit, minmax(60px, 60px));
-        max-height: 80%;
-        overflow-y: auto;
-        padding: 10px;
-        align-items: stretch;
-        margin: 0 auto;
-        column-gap: 10px;
-        width: 97%;
+        max-width: 100%;
     }
 }
 
-@media (min-width: 701px) and (max-width: 869px) {
-    #greetingDiv {
-        height: auto;
-    }
-
-    #greetingText {
-        font-size: x-large;
-    }
-
-    #nextMatchAndButtonDiv {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    #nextMatchDiv {
-        margin-left: 7px;
-        width: calc(100% - 20px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 30px;
-    }
-
-    #seeRecomendationsText {
-        font-size: large;
-    }
-
+@media (max-width: 768px) {
     #homePageContentDiv {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    #leftDiv {
-        width: 100%;
-    }
-
-    #rightDiv {
-        margin-top: 30px;
-        width: 100%;
-        height: 40%;
-        display: flex;
-        align-items: center;
-    }
-
-    #recomendationsDiv {
-        margin-top: 20px;
-        height: 55%;
-    }
-
-    #recomendationsText,
-    #nextMatchText {
-        margin: 0;
-    }
-
-    #recomendations {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #coachImage {
-        width: 100%;
-    }
-
-    #notCoachRightDiv {
-        width: 100%;
-        margin-top: -10px;
-        display: flex;
-        height: 33.6%;
-    }
-
-    #lastMatchText {
-        margin: 0;
-        margin-top: 10%;
-        padding-left: 19px;
-    }
-
-    .playerStat {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-    }
-
-    .playerStatDiv {
-        width: 60px;
-        height: 60px;
-    }
-
-    .playerStatText {
-        font-family: Inria Sans;
-        color: black;
-        font-weight: bold;
-        font-size: x-large;
-    }
-
-    .playerStatsTitle {
-        font-family: Inria Sans;
-        color: black;
-        font-weight: bold;
-        font-size: medium;
-        min-height: 3em;
-        display: flex;
-        align-items: flex-start;
-        text-align: center;
-    }
-
-    #lastMatchPlayerStats {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 130px));
-        max-height: 80%;
-        overflow-y: auto;
-        padding: 10px;
-        align-items: stretch;
-        margin: 0 auto;
-        column-gap: 10px;
-        width: 95%;
-        scrollbar-color: var(--club-primary-color) transparent;
-    }
-}
-
-@media (min-width: 870px) and (max-width: 1280px) and (orientation: portrait) {
-    #nextMatchAndButtonDiv {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        padding: 60px 16px 32px 16px;
         gap: 20px;
     }
 
-    #nextMatchDiv {
-        margin-left: 7px;
-        width: calc(100% - 20px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 60px;
+    #greetingDiv {
+        padding: 16px 20px;
+        border-radius: 18px;
+        gap: 16px;
+        min-height: auto;
     }
 
-    #seeRecomendationsText {
-        font-size: larger;
+    #greetingText {
+        font-size: 1.5rem;
     }
 
-    #homePageContentDiv {
-        flex-direction: column;
-    }
-
-    #leftDiv {
-        width: 100%;
-    }
-
-    #rightDiv {
-        margin-top: 30px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    #recomendationsDiv {
-        margin-top: 20px;
-        height: 80%;
+    #playerImage {
+        width: 90px;
+        height: 90px;
+        min-width: 90px;
+        min-height: 90px;
     }
 
     #coachImage {
-        width: 100%;
+        width: 110px;
     }
 
-    #nextMatchText {
-        font-size: larger;
-    }
-
-    #notCoachRightDiv {
-        width: 100%;
-        margin-top: -10px;
-        display: flex;
-        height: 33.6%;
-    }
-
-    #lastMatchText {
-        margin: 0;
-        margin-top: 10%;
-        padding-left: 19px;
+    #lastMatchPlayerStats {
+        grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+        gap: 10px;
     }
 
     .playerStat {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
+        padding: 10px 6px;
+        border-radius: 12px;
     }
 
     .playerStatDiv {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+        border-width: 2.5px;
     }
 
     .playerStatText {
-        font-family: Inria Sans;
-        color: black;
-        font-weight: bold;
-        font-size: x-large;
+        font-size: 1.2rem;
     }
 
     .playerStatsTitle {
-        font-family: Inria Sans;
-        color: black;
-        font-weight: bold;
-        font-size: medium;
-        min-height: 3em;
-        display: flex;
-        align-items: flex-start;
-        text-align: center;
-    }
-
-    #lastMatchPlayerStats {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 130px));
-        max-height: 80%;
-        overflow-y: auto;
-        padding: 10px;
-        align-items: stretch;
-        margin: 0 auto;
-        column-gap: 10px;
-        width: 95%;
-        scrollbar-color: var(--club-primary-color) transparent;
-    }
-}
-
-@media (min-height: 700px) and (max-height: 721px) and (orientation: portrait) {
-    #coachImage {
-        width: 100%;
-    }
-
-    #nextMatchDiv {
-        margin-bottom: 0;
-    }
-
-    #notCoachRightDiv {
-        margin-top: -20px;
-    }
-}
-
-@media (min-width: 870px) and (max-width: 1280px) and (orientation: landscape) {
-
-    #lastMatchPlayerStats {
-        max-height: 65%;
-    }
-}
-
-@media (max-height: 601px) and (orientation: landscape) {
-
-    #nextMatchDiv {
-        margin-bottom: 20px;
-    }
-
-    #recomendationsDiv {
-        margin-top: 50px;
-    }
-
-    #lastMatchPlayerStats {
-        max-height: 60%;
-        padding-top: 10px;
-    }
-}
-
-@media (min-width: 1280px) and (orientation: landscape) {
-
-    #notCoachRightDiv {
-        margin-left: 20px;
-    }
-}
-
-@media (min-height: 721px) and (max-height: 1000px) and (orientation: portrait) {
-    #notCoachRightDiv {
-        margin-top: 30px;
+        font-size: 0.72rem;
     }
 }
