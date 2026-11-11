@@ -1,88 +1,125 @@
 #teamRecomendationsMainDiv {
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100vh - 80px);
     position: absolute;
     left: 0;
     top: 80px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
+    padding: 32px 40px 50px 40px;
+    box-sizing: border-box;
+    gap: 32px;
+    max-width: 1360px;
+    margin: 0 auto;
 }
 
 #teamRecomendationsLeftDiv {
-    width: 20%;
-    height: 100%;
+    width: 240px;
+    flex-shrink: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0;
 }
 
 #teamRecomendationsteamImageDiv {
-    width: 80%;
-    padding: 0;
-    border: 1px solid var(--club-primary-color);
-    border-radius: 15px;
+    width: 100%;
+    padding: 24px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
 }
 
 #teamRecomendationsteamImage {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    text-align: center;
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
 }
 
 #teamRecomendationsRightDiv {
-    width: 80%;
-    height: 100%;
+    flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    min-width: 0;
 }
 
 #teamRecomendationsDiv {
-    width: 90%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 #teamRecomendationsDiv .react-tabs__tab-panel--selected {
-    width: 90%;
-    height: 100%;
+    width: 100%;
+    flex: 1;
     background-color: white;
-    border: 1px solid var(--club-primary-color);
-    max-height: 80%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 22px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    padding: 24px 28px;
+    box-sizing: border-box;
     overflow-y: auto;
     scrollbar-color: var(--club-primary-color) transparent;
 }
 
-#teamRecomendationTitleText {
-    font-family: Inria Sans;
-    color: var(--club-primary-color);
-    font-weight: bold;
-    margin: 0;
-}
-
-#teamRecomendationDescriptionText {
-    font-family: Inria Sans;
-    color: black;
-    margin: 0;
-}
-
 #teamRecomendation {
-    margin-left: 2.5%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+#teamRecomendation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--club-primary-color);
+}
+
+#teamRecomendation:hover {
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+#teamRecomendationTitleText {
+    font-family: Inria Sans, sans-serif;
+    color: var(--club-primary-color);
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin: 0;
+    letter-spacing: 0.03em;
+}
+
+#teamRecomendationDescriptionText {
+    font-family: Inria Sans, sans-serif;
+    color: #334155;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin: 0;
+    text-align: left;
 }
 
 #matchStatsPanel,
@@ -100,9 +137,27 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 
 #matchStatsDiv .playerStat {
-    width: 250px;
+    width: 210px;
+}
+
+@media (max-width: 850px) {
+    #teamRecomendationsMainDiv {
+        flex-direction: column;
+        padding: 50px 16px 40px 16px;
+        gap: 20px;
+        height: auto;
+        min-height: calc(100vh - 80px);
+    }
+
+    #teamRecomendationsLeftDiv {
+        width: 100%;
+    }
+
+    #teamRecomendationsteamImageDiv {
+        max-width: 180px;
+    }
 }

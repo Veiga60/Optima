@@ -1,15 +1,15 @@
 #playerCardDiv {
-    width: 200px;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    transition: 0.3s;
+    width: 170px;
+    flex-shrink: 0;
+    margin: 8px 0;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .playerCardHover:hover {
-    translate: 0px -10px;
-    transition: 0.3s;
+    transform: translateY(-6px);
     cursor: pointer;
 }
 
@@ -17,20 +17,27 @@
     position: relative;
     padding: 0;
     margin: 0;
-    height: 86%;
-    width: 200px;
+    height: 180px;
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.playerPendingDiv {
+.playerPendingDiv,
+.playerConfirmedDiv,
+.playerOutDiv {
     position: relative;
-    width: 200px;
+    width: 160px;
+    height: 180px;
 }
 
 .playerPendingDiv::before {
     content: "?";
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: 6em;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 900;
+    font-size: 5rem;
+    color: white;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -39,24 +46,19 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(7, 78, 200, 0.55);
+    background: rgba(7, 78, 200, 0.65);
+    backdrop-filter: blur(2px);
     z-index: 1;
-    border-radius: 20px;
-    height: 180px;
-    width: 198px;
-    margin-left: 1px;
-}
-
-.playerConfirmedDiv {
-    position: relative;
-    width: 200px;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
 .playerConfirmedDiv::before {
     content: "\2714";
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: 6em;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 900;
+    font-size: 4.5rem;
+    color: white;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -65,24 +67,19 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(26, 200, 7, 0.55);
+    background: rgba(16, 185, 129, 0.7);
+    backdrop-filter: blur(2px);
     z-index: 1;
-    border-radius: 20px;
-    height: 180px;
-    width: 198px;
-    margin-left: 1px;
-}
-
-.playerOutDiv {
-    position: relative;
-    width: 200px;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
 .playerOutDiv::before {
     content: "\2716";
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: 6em;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 900;
+    font-size: 4.5rem;
+    color: white;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -91,26 +88,32 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(200, 10, 7, 0.55);
+    background: rgba(239, 68, 68, 0.7);
+    backdrop-filter: blur(2px);
     z-index: 1;
-    border-radius: 20px;
-    height: 180px;
-    width: 198px;
-    margin-left: 1px;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
 #playerPhoto {
-    width: 99%;
+    width: 160px;
     height: 180px;
-    border: 2px solid var(--club-primary-color);
-    border-radius: 20px;
+    object-fit: cover;
+    border: 3px solid var(--club-primary-color);
+    border-radius: 18px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
 #playerName {
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: medium;
-    margin: 0;
-    color: black;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    margin-top: 10px;
+    color: #1a1a1a;
     white-space: nowrap;
+    text-align: center;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -2,101 +2,171 @@
     position: absolute;
     left: 0;
     top: 80px;
-    height: calc(100% - 80px);
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    scrollbar-color: var(--club-primary-color) transparent;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    padding: 36px 32px 60px 32px;
+    box-sizing: border-box;
+    gap: 28px;
 }
 
 #playerInfoDiv {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    padding: 24px 36px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
 
-#playerDetailsDiv {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 20px;
+#playerInfoDiv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--club-primary-color);
 }
 
 #playerPhotoDiv {
-    display: inline-block;
-}
-
-#name {
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-    font-size: xx-large;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-}
-
-#birthDate {
-    text-align: left;
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-    font-size: large;
-    margin: 0;
-}
-
-#number {
-    text-align: left;
-    font-family: Inria Sans;
-    color: black;
-    font-weight: bold;
-    font-size: large;
-    margin: 0;
-}
-
-table {
-    color: black;
-    width: 100%;
-}
-
-#playerStatsDiv {
-    overflow-x: auto;
-    max-width: 100%;
-    scrollbar-color: var(--club-primary-color) transparent;
-}
-
-#playerStatsTable {
-    border: 1px solid var(--club-primary-color);
+    flex-shrink: 0;
 }
 
 #photo {
-    border-radius: 10%;
-    border: 1px solid var(--club-primary-color);
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3.5px solid var(--club-primary-color);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    display: block;
+}
+
+#playerDetailsDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    text-align: left;
+}
+
+#name {
+    font-family: Inria Sans, sans-serif;
+    color: #1a1a1a;
+    font-weight: 800;
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+#birthDate,
+#number {
+    font-family: Inria Sans, sans-serif;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+}
+
+#number strong,
+#birthDate strong {
+    color: #1a1a1a;
+}
+
+#playerStatsDiv {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+#playerStatsTable {
+    width: 100%;
+    border-collapse: collapse;
+    color: #1a1a1a;
+    font-family: Inria Sans, sans-serif;
 }
 
 #tableHead {
     color: white;
-    font-family: Inria Sans;
-    font-weight: bold;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 800;
     background-color: var(--club-primary-color);
-    border: 1px solid var(--club-primary-color);
     white-space: nowrap;
-    padding: 0;
 }
 
 .headCell {
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: center;
+}
+
+#tableBody tr {
+    transition: background 0.15s ease;
+    border-bottom: 1px solid #edf2f7;
+}
+
+#tableBody tr:hover {
+    background-color: #f8fafc;
 }
 
 .bodyCell {
-    font-family: Inria Sans;
-    font-weight: bold;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    text-align: center;
+    color: #334155;
 }
 
-#tableBody {
-    background-color: white;
+@media (max-width: 700px) {
+    #contentDiv {
+        padding: 50px 14px 40px 14px;
+        gap: 20px;
+    }
+
+    #playerInfoDiv {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 16px;
+        gap: 16px;
+    }
+
+    #playerDetailsDiv {
+        text-align: center;
+    }
+
+    #name {
+        font-size: 1.5rem;
+    }
+
+    #photo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .headCell,
+    .bodyCell {
+        padding: 8px 8px;
+        font-size: 0.75rem;
+    }
 }

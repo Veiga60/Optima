@@ -1,33 +1,115 @@
 #cardDiv {
-    width: 200px;
-    height: 180px;
+    width: 100%;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--club-primary-color);
-    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
     background-color: white;
     align-items: center;
-    justify-content: center;
-    transition: 0.2s;
+    justify-content: space-between;
+    padding: 20px 16px;
+    box-sizing: border-box;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
 }
 
+#cardDiv:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    border-color: var(--club-primary-color);
+}
+
+/* Indicador de convocatoria pendiente */
 .pendingCall {
     position: relative;
 }
 
 .pendingCall::before {
-    content: "";
+    content: "!";
+    font-family: Inria Sans, sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: white;
     position: absolute;
-    top: -5px;
-    right: -5px;
-    bottom: 0;
-    background: red;
-    width: 20px;
-    height: 20px;
+    top: -8px;
+    right: -8px;
+    background: #ef4444;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 2000px;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(239, 68, 68, 0.45);
+    border: 2px solid white;
+    z-index: 5;
+    animation: pulseBadge 2s infinite ease-in-out;
+}
+
+@keyframes pulseBadge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+#dateTimeDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dateTimeText {
+    color: #475569;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+#teamDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+#vsText {
+    color: var(--club-primary-color);
+    font-family: Inria Sans, sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+    margin: 0;
+}
+
+#rivalTeamImageDiv {
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#rivalTeamImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    transition: transform 0.2s ease;
+}
+
+#cardDiv:hover #rivalTeamImage {
+    transform: scale(1.08);
 }
 
 #selectButtonDiv {
@@ -37,35 +119,4 @@
 
 #selectButton {
     width: 100%;
-}
-
-#cardDiv:hover {
-    cursor: pointer;
-    filter: brightness(40%);
-    transition: 0.2s;
-}
-
-#teamDiv {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-}
-
-#dateTimeText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-}
-
-#vsText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: xx-large;
-}
-
-#rivalTeamImageDiv {
-    width: 40%;
 }

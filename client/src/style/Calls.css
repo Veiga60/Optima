@@ -1,41 +1,63 @@
+/* Contenedor principal de convocatorias */
 #callsMainDiv {
-    left: 0;
-    top: 125px;
     position: absolute;
+    left: 0;
+    top: 80px;
     width: 100%;
-    padding-bottom: 30px;
-    max-height: calc(100vh - 125px);
+    height: calc(100vh - 80px);
     overflow-y: auto;
-    overscroll-behavior-y: contain;
-}
-
-#callsMainDiv::-webkit-scrollbar {
-    display: none;
+    scrollbar-color: var(--club-primary-color) transparent;
+    padding: 36px 32px 60px 32px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #nextMatchesDiv {
     width: 100%;
-    margin-top: 10px;
+    max-width: 1100px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 240px));
+    gap: 24px;
+    align-items: stretch;
     justify-content: center;
-    gap: 50px;
+    margin: 0 auto;
 }
 
 #callsErrorDiv {
-    white-space: nowrap;
     grid-column: 1 / -1;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    min-height: 50vh;
+    background: white;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 22px;
+    padding: 40px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 #callsErrorText {
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: xx-large;
-    color: black;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #475569;
     text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    #callsMainDiv {
+        padding: 50px 16px 40px 16px;
+    }
+
+    #nextMatchesDiv {
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 16px;
+    }
+
+    #callsErrorText {
+        font-size: 1.25rem;
+    }
 }
