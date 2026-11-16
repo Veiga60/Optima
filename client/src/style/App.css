@@ -4,6 +4,11 @@
   text-align: center;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+
 :root {
   --club-primary-color: rgb(35, 35, 35);
   --club-secondary-color: rgb(224, 243, 229);

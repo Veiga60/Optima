@@ -48,7 +48,7 @@ export default function Matches() {
     }, [clubTeamId])
 
     useEffect(() => {
-        if (authenticatedUser.isCoach == true) {
+        if (authenticatedUser?.isCoach == true) {
             setClubTeamId(authenticatedUser?.coach?.clubTeams[0].id);
         } else {
             setClubTeamId(authenticatedUser?.player?.clubTeams[0].id);
