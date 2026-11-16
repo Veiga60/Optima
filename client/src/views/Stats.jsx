@@ -90,7 +90,7 @@ export default function Stats() {
                                         key={player.id}
                                         player={player}
                                         onClick={() => navigate(`/stats/players/${player.id}`, { state: { clubTeamId: clubTeamId } })}
-                                        enableHover={'true'}
+                                        enableHover={true}
                                     />
                                 )}
                             </div>

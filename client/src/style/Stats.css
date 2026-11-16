@@ -124,7 +124,7 @@
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 16px;
-    padding: 14px 12px;
+    padding: 14px 17px 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,14 +150,13 @@
     letter-spacing: 0.03em;
     text-transform: uppercase;
     border-radius: 9999px;
-    padding: 4px 12px;
+    padding: 5px 0px 20px 15px;
     margin: 0;
     text-align: center;
-    width: auto;
-    max-width: 90%;
     white-space: nowrap;
-    overflow: hidden;
+    overflow: auto;
     text-overflow: ellipsis;
+    user-select: none;
 }
 
 .statValue {
@@ -167,6 +166,7 @@
     font-weight: 800;
     font-size: 1.6rem;
     line-height: 1.2;
+    user-select: none;
 }
 
 #logoImageDiv {
