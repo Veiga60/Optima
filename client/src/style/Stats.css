@@ -99,12 +99,12 @@
     width: 100%;
     max-height: calc(100vh - 240px);
     display: grid;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
     gap: 16px;
-    padding: 10px 4px;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 10px 5px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 220px));
     scrollbar-color: var(--club-primary-color) transparent;
 }
 

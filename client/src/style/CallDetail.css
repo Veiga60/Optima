@@ -140,7 +140,7 @@
     padding-bottom: 0px;
     box-sizing: border-box;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-    gap: 20px;
+    gap: 60px;
     scrollbar-color: var(--club-primary-color) transparent;
 }
 
