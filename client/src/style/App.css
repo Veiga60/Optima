@@ -14,11 +14,19 @@
   --club-secondary-color: rgb(224, 243, 229);
 }
 
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html,
 body {
   background-color: var(--club-secondary-color);
   overscroll-behavior-y: none;
 }
 
+html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
 }
