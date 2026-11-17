@@ -21,6 +21,7 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
 
     const login = async () => {
+        setError(null);
         try {
             const user = await loginContext(username, password);
             if ((user?.isCoach == true) && (user?.coach?.clubTeams == null || user?.coach?.clubTeams.length == 0)) {
