@@ -10,6 +10,10 @@
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+    padding: 0 24px;
 }
 
 #headerDiv:hover {
@@ -17,72 +21,78 @@
 }
 
 #titleDiv {
-    height: 80px;
-    width: 28%;
+    height: 100%;
     display: flex;
     align-items: center;
+    gap: 14px;
+    user-select: none;
 }
 
 #logo {
-    width: 80px;
-    padding-bottom: 2px;
-    margin-left: 10px;
-    margin-right: 10px;
+    height: 52px;
+    width: auto;
+    max-width: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+    transition: transform 0.2s ease;
 }
 
-h1 {
-    font-family: Inria Sans;
-    font-weight: bold;
+#logo:hover {
+    transform: scale(1.04);
+}
+
+h1#title {
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
     color: white;
     white-space: nowrap;
+    margin: 0;
+    letter-spacing: 0.06em;
+    font-size: 1.6rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 #navbar {
-    flex: 1;
+    display: flex;
+    align-items: center;
     justify-content: flex-end;
 }
 
-.menuIcon {
-    position: absolute;
-    right: 20px;
-}
-
-.menuIcon:hover {
+.menuIconButton {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
     cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-#hamburgerMenu {
-    position: absolute;
-    top: 80px;
-    right: 0;
+.menuIconButton:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: scale(1.05);
 }
 
-@media (max-width: 369px) {
-    h1 {
-        font-size: 1.5em;
+.menuIconButton:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+    #headerDiv {
+        padding: 0 16px;
     }
-}
 
-@media (min-width: 370px) and (max-width: 500px) {
-    h1 {
-        font-size: 1.75em;
+    #logo {
+        height: 44px;
     }
-}
 
-@media (min-width: 501px) and (max-width: 1050px) {
-    h1 {
-        font-size: 2em;
-    }
-}
-
-@media (min-width: 1051px) and (max-width: 1150px) {
-    h1 {
-        font-size: 1.5em;
-    }
-}
-
-@media (min-width: 1151px) and (max-width: 1280px) {
-    h1 {
-        font-size: 2em;
+    h1#title {
+        font-size: 1.25rem;
     }
 }

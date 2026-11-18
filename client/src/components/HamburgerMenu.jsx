@@ -1,4 +1,4 @@
-﻿import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { BiSolidHome, BiSolidMessageDetail } from "react-icons/bi";
 import { GiHockey } from "react-icons/gi";
@@ -7,9 +7,12 @@ import { FaCalendarDays, FaBox } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import '../style/HamburgerMenu.css'
 import SERVER_URL from '../config.js'
+import { useClub } from '../context/ClubContext.jsx';
 
-export default function HamburgerMenu({ className }) {
+export default function HamburgerMenu({ isOpen, onClose }) {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { clearClub } = useClub();
 
     const logout = async () => {
         try {
@@ -17,43 +20,54 @@ export default function HamburgerMenu({ className }) {
             localStorage.removeItem('jwt');
             localStorage.removeItem('isCoach');
             localStorage.removeItem('playerId');
+            clearClub();
+            if (onClose) onClose();
             navigate('/');
         } catch (error) {
             console.log('Error al cerrar sesión: ', error);
         }
     }
 
+    const handleNavigate = (path) => {
+        if (onClose) onClose();
+        navigate(path);
+    }
+
+    const menuItems = [
+        { label: 'INICIO', path: '/home', icon: BiSolidHome },
+        { label: 'PARTIDOS', path: '/matches', icon: GiHockey },
+        { label: 'ESTADÍSTICAS', path: '/stats', icon: IoStatsChart },
+        { label: 'CONVOCATORIAS', path: '/calls', icon: FaCalendarDays },
+        { label: 'FORO', path: '/forum', icon: BiSolidMessageDetail },
+        { label: 'PEDIDOS', path: '/orders', icon: FaBox },
+    ];
+
     return (
         <>
-            <div id='hamburgerMenuDiv' className={className}>
+            <div
+                id='hamburgerMenuBackdrop'
+                className={isOpen ? 'backdropIsOpen' : ''}
+                onClick={onClose}
+            />
+            <div id='hamburgerMenuDiv' className={isOpen ? 'menuIsOpen' : 'menuIsClosed'}>
                 <div id='navMenuDiv'>
-                    <div id='menuHomeDiv' className='menuDiv' onClick={() => navigate('/home')}>
-                        <BiSolidHome className='hamburgerMenuIcon' color='var(--club-primary-color)' size={25} />
-                        <p id='menuHomeText' className='menuText'>INICIO</p>
-                    </div>
-                    <div id='menuMatchesDiv' className='menuDiv' onClick={() => navigate('/matches')}>
-                        <GiHockey className='hamburgerMenuIcon' color='var(--club-primary-color)' size={25} />
-                        <p id='menuMatchesText' className='menuText'>PARTIDOS</p>
-                    </div>
-                    <div id='menuStatsDiv' className='menuDiv' onClick={() => navigate('/stats')}>
-                        <IoStatsChart className='hamburgerMenuIcon' color='var(--club-primary-color)' size={25} />
-                        <p id='menuStatsText' className='menuText'>ESTADÍSTICAS</p>
-                    </div>
-                    <div id='menuCallsDiv' className='menuDiv' onClick={() => navigate('/calls')}>
-                        <FaCalendarDays className='hamburgerMenuIcon' color='var(--club-primary-color)' size={25} />
-                        <p id='menuCallsText' className='menuText'>CONVOCATORIAS</p>
-                    </div>
-                    <div id='menuForumDiv' className='menuDiv' onClick={() => navigate('/forum')}>
-                        <BiSolidMessageDetail className='hamburgerMenuIcon' color='var(--club-primary-color)' size={25} />
-                        <p id='menuForumText' className='menuText'>FORO</p>
-                    </div>
-                    <div id='menuOrdersDiv' className='menuDiv' onClick={() => navigate('/orders')}>
-                        <FaBox className='hamburgerMenuIcon' color='var(--club-primary-color)' size={25} />
-                        <p id='menuOrdersText' className='menuText'>PEDIDOS</p>
-                    </div>
+                    {menuItems.map(item => {
+                        const Icon = item.icon;
+                        const isActive = location.pathname.startsWith(item.path);
+                        return (
+                            <div
+                                key={item.path}
+                                className={`menuDiv ${isActive ? 'menuDivActive' : ''}`}
+                                onClick={() => handleNavigate(item.path)}
+                            >
+                                <Icon className='hamburgerMenuIcon' size={22} />
+                                <p className='menuText'>{item.label}</p>
+                            </div>
+                        );
+                    })}
                     <div id='menuLogoutDiv' className='menuDiv' onClick={logout}>
-                        <FiLogOut className='hamburgerMenuIcon' color='var(--club-primary-color)' size={25} />
-                        <p id='menuLogoutText' className='menuText'>CERRAR SESIÓN</p>
+                        <FiLogOut className='hamburgerMenuIcon' size={22} />
+                        <p className='menuText'>CERRAR SESIÓN</p>
                     </div>
                 </div>
             </div>

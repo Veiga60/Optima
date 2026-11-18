@@ -6,62 +6,72 @@ import { useState, useEffect } from 'react'
 import { useClub } from '../context/ClubContext.jsx'
 import HamburgerMenu from './HamburgerMenu.jsx'
 
-
 function Header() {
-
     const location = useLocation();
-
     const { club } = useClub();
 
     const [width, setWidth] = useState(window.innerWidth);
     const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
 
     useEffect(() => {
-        console.log('Hola ', club);
         const handleResize = () => setWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
-
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    // Cerrar menú al cambiar de ruta
+    useEffect(() => {
+        setShowHamburgerMenu(false);
+    }, [location.pathname]);
+
+    const isPublicPage = location.pathname === '/' ||
+        location.pathname === '/signup' ||
+        location.pathname === '/error/unauthorized' ||
+        location.pathname === '/select_role' ||
+        location.pathname === '/select_clubTeams';
 
     return (
         <div id='headerDiv'>
             <div id='titleDiv'>
-                <img id='logo' src={((club == null) || (location.pathname == '/') || (location.pathname == '/signup')) ? ('logos/logo_optima.png') : (`/logos/${club?.logo}`)} alt={`${club?.name}_logo`} />
+                <img
+                    id='logo'
+                    src={((club == null) || (location.pathname == '/') || (location.pathname == '/signup')) ? ('logos/logo_optima.png') : (`/logos/${club?.logo}`)}
+                    alt={`${club?.name || 'Optima'}_logo`}
+                />
                 {
                     (width > 420 || location.pathname == '/' || location.pathname == '/signup') && (
-                        <h1 id='title'>{
-                            ((club == null) || (location.pathname == '/') || (location.pathname == '/signup')) ?
-                                (
-                                    'OPTIMA'
-                                ) :
-                                (
-                                    `${String(club?.name).toUpperCase()}`
-                                )}
+                        <h1 id='title'>
+                            {((club == null) || (location.pathname == '/') || (location.pathname == '/signup'))
+                                ? 'OPTIMA'
+                                : `${String(club?.name).toUpperCase()}`}
                         </h1>
                     )
                 }
-                {
-                    (width <= 1050) && (
-                        ((location.pathname != '/' && location.pathname != '/signup' && location.pathname != '/error/unauthorized' && location.pathname != '/select_role'))
-                        && ((!showHamburgerMenu)
-                            ? (<RxHamburgerMenu className='menuIcon' color='white' size={35} onClick={() => setShowHamburgerMenu(true)} />)
-                            : (<RxCross1 className='menuIcon' color='white' size={35} onClick={() => setShowHamburgerMenu(false)} />))
-                    )
-                }
             </div>
-            {((location.pathname != '/' && location.pathname != '/signup' && location.pathname != '/error/unauthorized' && location.pathname != '/select_role' && location.pathname != '/select_clubTeams') && (width > 1050)) &&
+
+            {!isPublicPage && width > 1050 && (
                 <div id='navbar'>
                     <NavBar />
                 </div>
-            }
-            {
-                (width < 1050) && (
-                    <HamburgerMenu
-                        className={showHamburgerMenu ? 'menuIsOpen' : 'menuIsClosed'}
-                    />
-                )
-            }
+            )}
+
+            {!isPublicPage && width <= 1050 && (
+                <button
+                    type='button'
+                    className='menuIconButton'
+                    onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
+                    aria-label='Toggle menu'
+                >
+                    {showHamburgerMenu ? <RxCross1 size={24} /> : <RxHamburgerMenu size={24} />}
+                </button>
+            )}
+
+            {!isPublicPage && width <= 1050 && (
+                <HamburgerMenu
+                    isOpen={showHamburgerMenu}
+                    onClose={() => setShowHamburgerMenu(false)}
+                />
+            )}
         </div>
     )
 }

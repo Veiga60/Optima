@@ -1,4 +1,4 @@
-﻿import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import '../style/NavBar.css'
 import { FiLogOut } from "react-icons/fi";
@@ -7,6 +7,7 @@ import { useClub } from '../context/ClubContext.jsx';
 
 export default function NavBar() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const { clearClub } = useClub();
 
@@ -23,27 +24,32 @@ export default function NavBar() {
         }
     }
 
+    const navItems = [
+        { label: 'INICIO', path: '/home' },
+        { label: 'PARTIDOS', path: '/matches' },
+        { label: 'ESTADÍSTICAS', path: '/stats' },
+        { label: 'CONVOCATORIAS', path: '/calls' },
+        { label: 'FORO', path: '/forum' },
+        { label: 'PEDIDOS', path: '/orders' },
+    ];
+
     return (
         <div id="navbarDiv">
-            <div id="homeNavDiv" className="navbarSectionDiv" onClick={() => navigate('/home')}>
-                <p id="homeNavText" className="navbarText">INICIO</p>
+            {navItems.map(item => {
+                const isActive = location.pathname.startsWith(item.path);
+                return (
+                    <div
+                        key={item.path}
+                        className={`navbarSectionDiv ${isActive ? 'active' : ''}`}
+                        onClick={() => navigate(item.path)}
+                    >
+                        <p className="navbarText">{item.label}</p>
+                    </div>
+                );
+            })}
+            <div className="navbarLogoutBtn" onClick={logout} title="Cerrar sesión">
+                <FiLogOut size={20} />
             </div>
-            <div id="matchesNavDiv" className="navbarSectionDiv" onClick={() => navigate('/matches')}>
-                <p id="matchesNavText" className="navbarText">PARTIDOS</p>
-            </div>
-            <div id="statsNavDiv" className="navbarSectionDiv" onClick={() => navigate('/stats')}>
-                <p id="statsNavText" className="navbarText">ESTADÍSTICAS</p>
-            </div>
-            <div id="callsNavDiv" className="navbarSectionDiv" onClick={() => navigate('/calls')}>
-                <p id="callsNavText" className="navbarText">CONVOCATORIAS</p>
-            </div>
-            <div id="forumNavDiv" className="navbarSectionDiv" onClick={() => navigate('/forum')}>
-                <p id="forumNavText" className="navbarText">FORO</p>
-            </div>
-            <div id="ordersNavDiv" className="navbarSectionDiv" onClick={() => navigate('/orders')}>
-                <p id="ordersNavText" className="navbarText">PEDIDOS</p>
-            </div>
-            <FiLogOut className='logoutIcon' onClick={logout} size={30} color='white' />
         </div>
     )
 }
