@@ -1,13 +1,32 @@
 import '../style/PlayerCard.css'
 import basicUser from '../assets/images/basicUser.png'
 
-export default function PlayerCard({ player, onClick, status, enableHover }) {
+export default function PlayerCard({ player, onClick, status, enableHover, showCallOverlay }) {
+    const isCallCandidate = showCallOverlay && (status === undefined || status === 'NOT CALLED' || status === null);
 
     return (
         <>
-            <div id="playerCardDiv" className={(enableHover == true && (status != 'PENDING' && status != 'OUT' && status != 'CONFIRMED')) ? ("playerCardHover") : (undefined)} onClick={onClick}>
+            <div
+                id="playerCardDiv"
+                className={`${(enableHover == true && (status != 'PENDING' && status != 'OUT' && status != 'CONFIRMED')) ? "playerCardHover" : ""} ${isCallCandidate ? "playerCardCallCandidate" : ""}`}
+                onClick={onClick}
+            >
                 <div id="playerPhotoDiv" className={(status != undefined) ? (status == 'PENDING' && 'playerPendingDiv') || (status == 'CONFIRMED' && 'playerConfirmedDiv') || (status == 'OUT' && 'playerOutDiv') || (status == 'NOT CALLED' && 'playerNotCalledDiv') : (undefined)}>
                     <img id="playerPhoto" src={player.photo ? `/players/${player.photo}` : basicUser} alt={`${player.name} ${player.lastName1} ${player.lastName2}`} />
+                    {isCallCandidate && (
+                        <div className="callPlayerOverlay">
+                            <button
+                                type="button"
+                                className="callPlayerOverlayButton"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (onClick) onClick();
+                                }}
+                            >
+                                CONVOCAR
+                            </button>
+                        </div>
+                    )}
                 </div>
                 <p id="playerName">{player.name} {player.lastName1} {player.lastName2}</p>
             </div>

@@ -231,40 +231,71 @@
     margin: 0;
 }
 
-/* Botón EMPEZAR PARTIDO (Coach) */
-#startMatchDiv {
+/* Botón EMPEZAR PARTIDO en overlay (Coach) al hacer hover sobre el primer partido */
+.firstNextMatchWrapper {
+    position: relative;
     width: 100%;
+    display: flex;
+    border-radius: 18px;
 }
 
-#startMatchButton {
-    background-color: var(--club-primary-color);
-    color: #ffffff;
-    border: none;
-    border-radius: 14px;
+.nextMatchItemWrapper {
+    position: relative;
     width: 100%;
-    height: 50px;
-    font-family: Inria Sans, sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+}
+
+.startMatchOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, backdrop-filter 0.25s ease;
 }
 
-#startMatchButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
-    filter: brightness(1.1);
+.firstNextMatchWrapper:hover .startMatchOverlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.startMatchOverlayButton {
+    background-color: var(--club-primary-color);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 14px;
+    padding: 12px 28px;
+    font-family: Inria Sans, sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#startMatchButton:active {
-    transform: translateY(0);
+.startMatchOverlayButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.15);
+}
+
+.startMatchOverlayButton:active {
+    transform: scale(0.98);
 }
 
 /* Sección Recomendaciones (Coach) */

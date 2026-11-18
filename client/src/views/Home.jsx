@@ -152,27 +152,42 @@ export default function Home() {
                                     <div id='nextMatchAndButtonDiv'>
                                         {
                                             nextMatchesAvailable && nextMatches ? (
-                                                nextMatches.slice(0, numberOfNextMatchesVisible).map((match) => (
-                                                    ((width < 700)
-                                                        ? (
-                                                            <MatchCompressed match={match} />
-                                                        )
-                                                        : (
-                                                            <Match match={match} />)
-                                                    )
-                                                ))
+                                                nextMatches.slice(0, numberOfNextMatchesVisible).map((match, index) => {
+                                                    const isFirst = index === 0;
+                                                    const matchComponent = (width < 700) ? (
+                                                        <MatchCompressed match={match} />
+                                                    ) : (
+                                                        <Match match={match} />
+                                                    );
+
+                                                    if (isFirst && authenticatedUser.isCoach === true) {
+                                                        return (
+                                                            <div key={match.id || index} className='firstNextMatchWrapper'>
+                                                                {matchComponent}
+                                                                <div className='startMatchOverlay'>
+                                                                    <button
+                                                                        className='startMatchOverlayButton'
+                                                                        onClick={() => toggleStartMatchModal()}
+                                                                    >
+                                                                        EMPEZAR PARTIDO
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    }
+
+                                                    return (
+                                                        <div key={match.id || index} className='nextMatchItemWrapper'>
+                                                            {matchComponent}
+                                                        </div>
+                                                    );
+                                                })
                                             ) : (
                                                 <div id='notNextMatchDiv'>
                                                     <p id='notNextMatchText'>No hay próximo partido</p>
                                                 </div>
                                             )
                                         }
-                                        {(authenticatedUser.isCoach == true) &&
-                                            (
-                                                <div id='startMatchDiv'>
-                                                    <button id='startMatchButton' onClick={() => toggleStartMatchModal()}>EMPEZAR PARTIDO</button>
-                                                </div>
-                                            )}
                                     </div>
                                 </div>
                             </div>
@@ -358,7 +373,7 @@ export default function Home() {
             {
                 (showStartMatchModal) && (
                     <StartMatchModal
-                        matchId={nextMatch.id}
+                        matchId={nextMatches?.[0]?.id || nextMatch?.id}
                         onClose={() => setShowStartMatchModal(false)}
                         selectedClubTeamId={clubTeamId}
                     />

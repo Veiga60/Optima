@@ -114,7 +114,8 @@ export default function CallDetail() {
                                 player={player}
                                 onClick={() => callPlayer(player.id)}
                                 status={call?.callPlayerStatus[player.id]}
-                                enableHover={authenticatedUser?.isCoach}
+                                enableHover={false}
+                                showCallOverlay={authenticatedUser?.isCoach}
                             />
                         )}
                     </div>
