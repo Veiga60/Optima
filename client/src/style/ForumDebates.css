@@ -1,124 +1,119 @@
 #debatesMainDiv {
-    position: absolute;
-    left: 0;
-    top: 80px;
-    height: calc(100% - 80px);
     width: 100%;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+    padding: 100px 32px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
-
-#debateText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: larger;
+    gap: 24px;
+    font-family: 'Inria Sans', sans-serif;
 }
 
 #debatesDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 40%;
-    height: 60%;
-    gap: 5%;
+    width: 100%;
+    max-width: 780px;
+    gap: 16px;
 }
 
 .debateDiv {
     background-color: white;
-    border: 2px solid var(--club-primary-color);
-    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-left: 6px solid var(--club-primary-color);
+    border-radius: 18px;
     width: 100%;
+    padding: 20px 26px;
+    box-sizing: border-box;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .debateDiv:hover {
     cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.debateDiv::after {
+    content: '→';
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--club-primary-color);
+    transition: transform 0.2s ease;
+}
+
+.debateDiv:hover::after {
+    transform: translateX(4px);
+}
+
+#debateText {
+    color: #1a1a1a;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    margin: 0;
 }
 
 #createDebateButtonDiv {
     width: 100%;
+    max-width: 780px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .createDebateButton {
     background-color: var(--club-primary-color);
+    color: #ffffff;
     border: none;
-    border-radius: 12px;
-    width: 10%;
-    height: 40px;
-    font-family: Inria Sans;
-    font-size: larger;
-    transition: 0.5s;
+    border-radius: 14px;
+    padding: 12px 28px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@media (min-width: 300px) and (max-width: 400px) {
-    .createDebateButton {
-        width: 50%;
-    }
-
-    #debatesDiv {
-        width: 90%;
-    }
+.createDebateButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
 }
 
-@media (min-width: 401px) and (max-width: 500px) {
-    .createDebateButton {
-        width: 40%;
-    }
-
-    #debatesDiv {
-        width: 80%;
-    }
+.createDebateButton:active {
+    transform: translateY(0);
 }
 
-@media (min-width: 501px) and (max-width: 600px) {
+@media (max-width: 768px) {
+    #debatesMainDiv {
+        padding: 90px 16px 30px;
+    }
+
+    .debateDiv {
+        padding: 16px 20px;
+    }
+
+    #debateText {
+        font-size: 1.05rem;
+    }
+
+    #createDebateButtonDiv {
+        justify-content: stretch;
+    }
+
     .createDebateButton {
-        width: 30%;
-    }
-
-    #debatesDiv {
-        width: 70%;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 700px) {
-    .createDebateButton {
-        width: 25%;
-    }
-
-    #debatesDiv {
-        width: 60%;
-    }
-}
-
-@media (min-width: 701px) and (max-width: 1000px) {
-    .createDebateButton {
-        width: 20%;
-    }
-
-    #debatesDiv {
-        width: 50%;
-    }
-}
-
-@media (min-width: 1001px) and (max-width: 1300px) {
-    .createDebateButton {
-        width: 15%;
-    }
-
-    #debatesDiv {
-        width: 45%;
-    }
-}
-
-@media (min-width: 1301px) {
-    .createDebateButton {
-        width: 10%;
-    }
-
-    #debatesDiv {
-        width: 40%;
+        width: 100%;
     }
 }

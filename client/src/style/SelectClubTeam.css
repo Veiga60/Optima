@@ -24,16 +24,21 @@
 
 #confirmSelectedClubTeamsButton {
     background-color: var(--club-primary-color);
+    color: white;
     border: none;
-    border-radius: 12px;
-    height: 45px;
-    font-family: Inria Sans;
-    font-size: x-large;
-    transition: 0.5s;
+    border-radius: 14px;
+    height: 48px;
+    padding: 0 32px;
+    font-family: Inria Sans, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 #confirmSelectedClubTeamsButton:hover {
-    background-color: rgb(5, 54, 138);
-    transition: 0.5s;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    filter: brightness(1.1);
     cursor: pointer;
 }

@@ -1,23 +1,57 @@
 #ordersMainDiv {
-    position: absolute;
-    left: 0;
-    top: 80px;
-    height: calc(100vh - 80px);
     width: 100%;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+    padding: 30px 24px 40px;
     display: flex;
-    align-items: flex-start;
     justify-content: center;
+    font-family: 'Inria Sans', sans-serif;
 }
 
 #ordersTabDiv {
     width: 100%;
+    max-width: 1100px;
     display: flex;
-    margin-top: 5%;
     justify-content: center;
 }
 
 #ordersTab {
-    width: 95%;
+    width: 100%;
+}
+
+/* Tabs react-tabs con estilo moderno tipo pill */
+#ordersTab .react-tabs__tab-list {
+    display: flex;
+    gap: 12px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+}
+
+#ordersTab .react-tabs__tab {
+    padding: 10px 24px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #555;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+#ordersTab .react-tabs__tab--selected {
+    color: var(--club-primary-color);
+    border-bottom: 3px solid var(--club-primary-color);
+    background: transparent;
+}
+
+#ordersTab .react-tabs__tab:hover {
+    color: var(--club-primary-color);
 }
 
 .playerOrdersTab {
@@ -25,287 +59,195 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-height: 58vh;
-}
-
-.inputsDiv {
-    display: flex;
-    flex-direction: row;
-    gap: 1%;
-    align-items: center;
-    justify-content: center;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
 }
 
 .deadlineDiv {
     display: flex;
-    flex-direction: row;
     width: 100%;
-    height: min-content;
     justify-content: flex-end;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
+    margin-bottom: 12px;
 }
 
 .deadlineText {
-    color: black;
-    text-align: right;
-    height: min-content;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
+    color: #666;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
 }
 
-#wheelOrdersDiv {
-    white-space: nowrap;
-    width: 90%;
-    max-width: 90%;
+.inputsDiv {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+#stickInputsDiv {
+    width: 100%;
+}
+
+.orderInput,
+.stickOrderInput {
+    background-color: white;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    height: 42px;
+    padding: 0 14px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.orderInput:focus,
+.stickOrderInput:focus {
+    outline: none;
+    border-color: var(--club-primary-color);
+}
+
+.orderSelect,
+.stickOrderSelect {
+    height: 42px;
+    background-color: white;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 0 12px;
+    outline: none;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+}
+
+.orderSelect:focus,
+.stickOrderSelect:focus {
+    border-color: var(--club-primary-color);
+}
+
+#wheelOrdersDiv,
+#stickOrdersDiv {
+    width: 100%;
     overflow-x: auto;
-    scrollbar-color: var(--club-primary-color) transparent;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 #wheelOrdersTable {
-    width: 70%;
-    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 #wheelOrdersTableHead {
     color: white;
     background-color: var(--club-primary-color);
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: large;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
 }
 
 .ordersTableHeadText {
+    padding: 12px 16px;
     margin: 0;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.ordersTableHeadDiv {
-    margin: 0;
+    text-align: center;
 }
 
 #wheelOrdersTableBody {
-    color: black;
+    color: #1a1a1a;
     background-color: white;
-    font-family: Inria Sans;
-    font-size: large;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 0.95rem;
+}
+
+.ordersTableBodyDiv {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ordersTableBodyText {
+    padding: 12px 16px;
+    margin: 0;
+    text-align: center;
 }
 
 .ordersButtonsDiv {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: 0;
-    margin-bottom: 10px;
+    gap: 12px;
+    margin-top: 16px;
 }
 
 .orderButton,
 .stickOrderButton {
     background-color: var(--club-primary-color);
+    color: white;
     border: none;
     border-radius: 12px;
-    height: 40px;
-    font-family: Inria Sans;
-    font-size: larger;
-    transition: 0.5s;
-}
-
-#excelButton {
-    display: flex;
-    flex-direction: row;
+    height: 42px;
+    padding: 0 20px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
 }
 
-#sticksExcelButton {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.orderButton:hover,
+.stickOrderButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    filter: brightness(1.1);
 }
 
-#newOrderButton {
-    width: 150px;
-}
-
-#sticksNewOrderButton {
-    width: 150px;
-}
-
-.ordersTableBodyText {
-    margin: 0;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.ordersTableBodyDiv {
-    margin: 0;
-    border: 1px solid var(--club-primary-color);
-}
-
-.inputsDiv {
-    height: auto;
-    width: 100%;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    row-gap: 5px;
-}
-
-#stickInputsDiv {
-    width: 90%;
+.orderButton:active,
+.stickOrderButton:active {
+    transform: translateY(0);
 }
 
 .noActiveOrdersDiv {
-    margin-top: 3%;
+    padding: 30px;
+    text-align: center;
 }
 
 .noActiveOrdersText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: larger;
-}
-
-.orderInput,
-.stickOrderInput {
-    background-color: rgb(233, 233, 233);
-    color: black;
-    border: none;
-    border-radius: 12px;
-    height: 40px;
-    width: 16%;
-    font-family: Inria Sans;
-    margin-right: 10px;
+    color: #777;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.orderInput:focus {
-    outline: none;
-    border: 2px solid var(--club-primary-color);
-}
-
-.orderSelect,
-.stickOrderSelect {
-    height: 40px;
-    width: fit-content;
-    background-color: white;
-    color: black;
-    border: 2px solid var(--club-primary-color);
-    outline: none;
-    font-family: Inria Sans;
-    border-radius: 10px;
-}
-
-#wheelAmountInput,
-#stickAmountInput {
-    width: 70px;
-}
-
-#wheelAmountInput::-webkit-inner-spin-button {
-    display: none
-}
-
-#stickAmountInput::-webkit-inner-spin-button {
-    display: none;
-}
-
-.orderButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--club-primary-color);
-    border: none;
-    border-radius: 12px;
-    width: 80px;
-    height: 40px;
-    font-family: Inria Sans;
-    font-size: larger;
-    transition: 0.5s;
-}
-
-.orderButton:hover {
-    background-color: rgb(5, 54, 138);
-    transition: 0.5s;
-    cursor: pointer;
 }
 
 .orderExpiredText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-}
-
-#wheelPhoneNumberInput,
-#stickPhoneNumberInput {
-    width: 100px;
-}
-
-#stickOrdersDiv {
-    white-space: nowrap;
-    width: 90%;
-    max-width: 90%;
-    overflow-x: auto;
-    scrollbar-color: var(--club-primary-color) transparent;
-}
-
-#nametagInput {
-    width: 100px;
+    color: #d9534f;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
 }
 
 .excelIcon {
-    width: 17px;
-    height: 17px;
-}
-
-@media (max-width: 600px) {
-    .orderButton {
-        height: 30px;
-        font-size: medium;
-    }
-}
-
-@media (max-height: 345px) {
-    .playerOrdersTab {
-        max-height: 51vh;
-    }
-
-    #wheelOrdersDiv {
-        min-height: 50px;
-    }
-
-    #stickOrdersDiv {
-        min-height: 65px;
-    }
-}
-
-@media (max-height: 390px) and (orientation: landscape) {
-
-    .stickOrderInput,
-    .stickOrderSelect,
-    .stickOrderButton {
-        height: 20px;
-    }
-
-    .stickOrderButton {
-        font-size: medium;
-        display: flex;
-        align-items: center;
-    }
-
-    .deadlineText {
-        margin-top: 0;
-        margin-bottom: -20px;
-    }
+    width: 18px;
+    height: 18px;
 }

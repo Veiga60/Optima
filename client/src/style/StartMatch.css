@@ -18,18 +18,22 @@
 #finishMatchButton {
     background-color: var(--club-primary-color);
     border: none;
+    color: white;
     border-radius: 12px;
     width: 60%;
-    height: 25px;
-    font-family: Inria Sans;
-    font-size: medium;
-    transition: 0.5s;
+    height: 32px;
+    font-family: Inria Sans, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 #finishMatchButton:hover {
-    background-color: rgb(5, 54, 138);
-    transition: 0.5s;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+    filter: brightness(1.1);
     cursor: pointer;
 }
 
@@ -77,13 +81,24 @@
     justify-content: center;
     gap: 10px;
     background-color: var(--club-primary-color);
+    color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     width: 80%;
     height: 50%;
-    font-family: Inria Sans;
-    font-size: larger;
-    transition: 0.5s;
+    font-family: Inria Sans, sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+}
+
+.startMatchButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+    filter: brightness(1.1);
 }
 
 #startMatchLeftDiv {

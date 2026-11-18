@@ -1,106 +1,121 @@
 #createOrderModalMainDiv {
-    top: 80px;
+    top: 0;
     left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 80px);
+    height: 100%;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 #createOrderMainDiv {
-    width: 450px;
-    height: 200px;
+    width: 90%;
+    max-width: 480px;
+    height: auto;
     background-color: white;
-    border: 2px solid var(--club-primary-color);
-    border-radius: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 5px solid var(--club-primary-color);
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-sizing: border-box;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #createOrder {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
 #createOrderText {
-    color: black;
-    font-family: Inria Sans;
-    font-weight: bold;
-    font-size: larger;
-}
-
-#createOrderModalButtons {
-    margin-top: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 5%;
-}
-
-.createOrderModalButton {
-    background-color: var(--club-primary-color);
-    border: none;
-    border-radius: 12px;
-    height: 40px;
-    font-family: Inria Sans;
-    font-size: larger;
-    transition: 0.5s;
-}
-
-.createOrderModalButton:hover {
-    background-color: rgb(5, 54, 138);
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-#createOrderButton {
-    width: 30%;
-}
-
-#closeCreateOrderModalButton {
-    width: 30%;
+    color: #1a1a1a;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    margin: 0;
 }
 
 #createOrderModalInputsDiv {
     display: flex;
     flex-direction: row;
-    gap: 5%;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#deadline {
+    height: 44px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 0 14px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+#deadline:focus {
+    border-color: var(--club-primary-color);
+}
+
+#orderType {
+    height: 44px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 0 14px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+#orderType:focus {
+    border-color: var(--club-primary-color);
+}
+
+#createOrderModalButtons {
+    width: 100%;
+    display: flex;
+    gap: 16px;
     justify-content: center;
     align-items: center;
 }
 
-#deadline {
-    height: 40px;
-    width: 160px;
-    border-radius: 10px;
-    border: 2px solid var(--club-primary-color);
-    background-color: white;
-    color: black;
-    font-family: Inria Sans;
-    font-size: medium;
+.createOrderModalButton {
+    background-color: var(--club-primary-color);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    height: 44px;
+    padding: 0 24px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
-#deadline::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+.createOrderModalButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    filter: brightness(1.1);
 }
 
-#deadline::-webkit-calendar-picker {
-    background-color: white;
-}
-
-#orderType {
-    color: black;
-    font-family: Inria Sans;
-    font-size: medium;
-    height: 40px;
-    border-radius: 10px;
-    background-color: white;
-    border: 2px solid var(--club-primary-color);
-    width: 160px;
+.createOrderModalButton:active {
+    transform: translateY(0);
 }

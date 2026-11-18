@@ -1,75 +1,62 @@
 #mainMessageDiv {
     display: flex;
     flex-direction: row;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
 }
 
 #messageUserInfoDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    width: 20%;
-}
-
-#messageUserPlayerText {
-    color: black;
-    font-family: Inria Sans;
-    margin: 0;
-    width: 80%;
-    max-width: 80%;
+    gap: 4px;
+    flex-shrink: 0;
+    width: 60px;
 }
 
 #messageUserPlayerPhoto {
-    width: 50px;
-    height: 50px;
-    border-radius: 100000px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--club-primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#messageUserPlayerText {
+    color: #555;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 64px;
 }
 
 #messageContainerDiv {
-    width: 80%;
+    flex: 1;
+    min-width: 0;
 }
 
 #messageDiv {
-    border: 1px solid var(--club-primary-color);
     background-color: white;
-    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 12px 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
 #messageText {
-    color: black;
-    font-family: Inria Sans;
-    margin-left: 5px;
-    text-align: left;
+    color: #1a1a1a;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.45;
     margin: 0;
-    max-width: 100%;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-@media (max-width: 767px) {
-    #messageUserInfoDiv {
-        width: 25%;
-    }
-
-    #messageUserPlayerPhoto {
-        width: 36px;
-        height: 36px;
-    }
-
-    #messageUserPlayerText {
-        font-size: 11px;
-        width: 90%;
-        max-width: 90%;
-    }
-
-    #messageContainerDiv {
-        width: 75%;
-    }
-
-    #messageText {
-        font-size: 13px;
-        padding: 4px 6px;
-    }
 }
