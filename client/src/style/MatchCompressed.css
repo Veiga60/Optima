@@ -12,6 +12,24 @@
     padding: 0 10px;
 }
 
+.compressedTeamLogoDiv {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.compressedTeamLogoDiv img {
+    width: 100%;
+    height: 100%;
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
 #compressedCentralDiv {
     display: flex;
     flex-direction: column;

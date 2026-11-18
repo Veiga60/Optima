@@ -90,7 +90,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15%;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.teamImageDiv img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 @media(max-width: 500px) and (orientation: portrait) {
