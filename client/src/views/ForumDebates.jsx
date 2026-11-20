@@ -14,12 +14,12 @@ export default function ForumDebates() {
     const [createDebateModal, setCreateDebateModal] = useState(false);
 
     const [debates, setDebates] = useState([]);
-    const [title, setTitle] = useState();
+    const [title, setTitle] = useState('');
 
     const { authenticatedUser } = useContext(AuthContext);
 
-    const toggleCreateDebateModal = async () => {
-        await setCreateDebateModal(!createDebateModal);
+    const toggleCreateDebateModal = () => {
+        setCreateDebateModal((prev) => !prev);
     }
 
     const getDebates = async () => {
@@ -31,11 +31,16 @@ export default function ForumDebates() {
         }
     }
 
-    const createDebate = async () => {
+    const createDebate = async (debateTitle) => {
+        const titleToSend = debateTitle || title;
+        if (!titleToSend || !titleToSend.trim()) {
+            return;
+        }
+
         try {
             await axios.post(`${SERVER_URL}/debates`,
                 {
-                    title: title,
+                    title: titleToSend.trim(),
                     category: {
                         id: categoryId
                     }
@@ -46,9 +51,12 @@ export default function ForumDebates() {
                     },
 
                     withCredentials: true
-                })
+                });
+            setTitle('');
+            await getDebates();
         } catch (error) {
-            console.log('Error creating debate: ', error)
+            console.log('Error creating debate: ', error);
+            throw error;
         }
     }
 
