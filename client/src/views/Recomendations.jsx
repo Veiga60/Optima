@@ -24,7 +24,7 @@ export default function Recomendations() {
                     {
                         match?.call.players.map((player) => {
                             if (match?.call.callPlayerStatus[player.id] == 'CONFIRMED') {
-                                return <PlayerCard key={player.id} player={player} onClick={() => { navigate(`players/${player.id}`, { state: { player: player } }) }} />
+                                return <PlayerCard key={player.id} player={player} enableHover={true} onClick={() => { navigate(`players/${player.id}`, { state: { player: player } }) }} />
                             }
                         })
                     }
