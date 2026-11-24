@@ -8,7 +8,6 @@ import '../style/RecomendationsTeam.css'
 import SERVER_URL from '../config.js'
 
 export default function RecomendationsTeam() {
-    const location = useLocation();
     const { matchId } = useParams();
 
     const [teamRecomendations, setTeamRecomendations] = useState([]);
@@ -47,8 +46,8 @@ export default function RecomendationsTeam() {
             <Header />
             <div id="teamRecomendationsMainDiv">
                 <div id='teamRecomendationsLeftDiv'>
-                    <div id="teamRecomendationsPlayerImageDiv">
-                        <img id="teamRecomendationsPlayerImage" src={logo} alt='Metropolitano HC' />
+                    <div id="teamRecomendationsteamImageDiv">
+                        <img id="teamRecomendationsteamImage" src={logo} alt='Metropolitano HC' />
                     </div>
                 </div>
                 <div id='teamRecomendationsRightDiv'>
