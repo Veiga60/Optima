@@ -17,41 +17,58 @@
 
 #ordersTab {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Tabs react-tabs con estilo moderno tipo pill */
+/* Tabs react-tabs con estilo moderno tipo pill (mismo estilo que Stats y Recomendaciones) */
 #ordersTab .react-tabs__tab-list {
-    display: flex;
-    gap: 12px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
-    margin-bottom: 24px;
-    padding: 0;
+    margin: 0 0 16px;
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    display: inline-flex;
+    gap: 6px;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    font-family: 'Inria Sans', sans-serif;
     list-style: none;
     justify-content: center;
 }
 
 #ordersTab .react-tabs__tab {
-    padding: 10px 24px;
-    font-family: 'Inria Sans', sans-serif;
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: #555;
-    background: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
+    display: inline-block;
+    list-style: none;
+    padding: 8px 24px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 8px 8px 0 0;
+    background-color: transparent;
+    color: #475569;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 9999px;
+    border: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    user-select: none;
+    font-family: 'Inria Sans', sans-serif;
+}
+
+#ordersTab .react-tabs__tab:hover:not(.react-tabs__tab--selected) {
+    background: rgba(0, 0, 0, 0.04);
+    color: #0f172a;
 }
 
 #ordersTab .react-tabs__tab--selected {
-    color: var(--club-primary-color);
-    border-bottom: 3px solid var(--club-primary-color);
-    background: transparent;
+    background: var(--club-primary-color);
+    color: white;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-#ordersTab .react-tabs__tab:hover {
-    color: var(--club-primary-color);
+#ordersTab .react-tabs__tab:focus {
+    outline: none;
 }
 
 .playerOrdersTab {

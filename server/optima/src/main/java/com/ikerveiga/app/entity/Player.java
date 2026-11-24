@@ -42,7 +42,7 @@ public class Player {
     @Column(name = "player_lastName1", nullable = false, unique = false)
     private String lastName1;
 
-    @Column(name = "player_lastName2", nullable = false, unique = false)
+    @Column(name = "player_lastName2", nullable = true, unique = false)
     private String lastName2;
 
     @Column(name = "player_birth_date", nullable = false, unique = false)
