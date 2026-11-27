@@ -1,10 +1,15 @@
 import '../style/TacticalBoard.css'
 
-export default function TacticalBoard() {
+export default function TacticalBoard({ svgRef, players, handleMouseDown, handleMouseMove, handleMouseUp }) {
     return (
         <>
             <div id='tacticalBoardMainDiv'>
-                <svg viewBox="0 0 1000 500">
+                <svg
+                    ref={svgRef}
+                    viewBox="0 0 1000 500"
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                >
                     <rect
                         /*Rectangulo pista*/
                         x={2}
@@ -139,8 +144,28 @@ export default function TacticalBoard() {
                         d="M 891 215 A 35 35 0 0 0 891 285 Z"
                         fill="#fc4949"
                     />
+                    {players && players.map(player => (
+                        <g
+                            key={player.id}
+                            transform={`translate(${player.x}, ${player.y})`}
+                            onMouseDown={(e) => { e.stopPropagation(); handleMouseDown(player.id) }}
+                            style={{ cursor: 'grab' }}
+                        >
+                            <circle r={18} fill={player.color} stroke="#ffffff" strokeWidth={2} />
+                            <text
+                                textAnchor="middle"
+                                dy="6"
+                                fill={player.textColor}
+                                fontSize="14"
+                                fontWeight="bold"
+                                style={{ userSelect: 'none', pointerEvents: 'none' }}
+                            >
+                                {player.number}
+                            </text>
+                        </g>
+                    ))}
                 </svg>
-            </div>
+            </div >
         </>
     )
 }
