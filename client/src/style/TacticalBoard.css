@@ -17,3 +17,7 @@ svg {
     justify-content: center;
     width: 90%;
 }
+
+#leftGoal {
+    rx: 8px 0 0 8px;
+}

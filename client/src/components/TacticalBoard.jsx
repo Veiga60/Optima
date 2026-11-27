@@ -107,11 +107,37 @@ export default function TacticalBoard() {
                     />
                     <rect
                         /*Linea gol derecha*/
-                        x={890}
+                        x={891}
                         y={3}
                         width={2}
                         height={478}
                         fill='#fc4949'
+                    />
+                    <path
+                        /*Porteria izquierda*/
+                        d="M 91 225 L 75 225 Q 65 225 65 235 L 65 265 Q 65 275 75 275 L 91 275 Z"
+                        fill="#ffffff"
+                        fillOpacity={0.7}
+                        stroke="#fc4949"
+                        strokeWidth={2}
+                    />
+                    <path
+                        /*Area izquierda */
+                        d="M 92 215 A 35 35 0 0 1 92 285 Z"
+                        fill="#fc4949"
+                    />
+                    <path
+                        /*Porteria derecha*/
+                        d="M 892 225 L 906 225 Q 916 225 916 235 L 916 265 Q 916 275 906 275 L 892 275 Z"
+                        fill="#ffffff"
+                        fillOpacity={0.7}
+                        stroke="#fc4949"
+                        strokeWidth={2}
+                    />
+                    <path
+                        /*Area derecha*/
+                        d="M 891 215 A 35 35 0 0 0 891 285 Z"
+                        fill="#fc4949"
                     />
                 </svg>
             </div>
