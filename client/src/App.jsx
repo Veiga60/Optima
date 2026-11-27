@@ -27,6 +27,7 @@ import Recomendations from './views/Recomendations.jsx'
 import RecomendationsPlayer from './views/RecomendationsPlayer.jsx'
 import RecomendationsTeam from './views/RecomendationsTeam.jsx'
 import SelectClubTeam from './views/SelectClubTeam.jsx'
+import Board from './views/Board.jsx'
 
 export default function App() {
 
@@ -56,6 +57,7 @@ export default function App() {
             <Route path="/recomendations/matches/:matchId/players/:playerId" element={<RecomendationsPlayer />} />
             <Route path="/recomendations/matches/:matchId/team" element={<RecomendationsTeam />} />
             <Route path="/select_clubTeams" element={<SelectClubTeam />} />
+            <Route path="/board" element={<Board />} />
             <Route path="/error/unauthorized" element={<Unauthorized />} />
           </Routes>
         </AuthProvider>
